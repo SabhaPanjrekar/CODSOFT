@@ -1,0 +1,67 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class NumberGame
+{
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        do
+        {
+            int maxNumber = 100;
+            int randomNumber = random.nextInt(maxNumber) + 1;
+            int maxAttempts = 5;
+            int userGuess;
+            int attempts = 0;
+
+            System.out.println("A random number has been choosed for you.");
+            System.out.println("Try to guess it correctly in " + maxAttempts + " attempts.");
+
+            while (attempts < maxAttempts)
+            {
+                System.out.print("Guess the number (enter 0 to exit): ");
+                userGuess = scanner.nextInt();
+                attempts++;
+
+                if (userGuess == 0)
+                {
+                    System.out.println("Thank you for playing! You're Exiting the game.");
+                    System.exit(0);
+                }
+                if (userGuess == randomNumber)
+                {
+                    System.out.println("Congratulations! You have guessed the number correctly in just " + attempts + " attempts.");
+
+                    break;
+                }
+                else if (userGuess < randomNumber)
+                {
+                    System.out.println("Try a higher number.");
+                }
+                else
+                {
+                    System.out.println("Try a lower number.");
+                }
+            }
+
+            if (attempts == maxAttempts)
+            {
+                System.out.println("Sorry, you ran out of attempts. The correct number was: " + randomNumber);
+            }
+
+            System.out.print("Would you like to play again? (Yes/No):");
+            String playAgain = scanner.next().toLowerCase();
+
+            if (!playAgain.equals("yes"))
+            {
+                System.out.println("Thank you for playing! You're Exiting the game.");
+                break;
+            }
+
+        }
+        while (true);
+        scanner.close();
+    }
+}
